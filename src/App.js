@@ -25,46 +25,46 @@ function App() {
     setNewcourse("");
   };
 
-   const deleteCourse = (courseId) => {
+  const deleteCourse = (courseId) => {
     setCourselist(courselist.filter((course) => course.id !== courseId));
-    };
+  };
 
-    const Iscomplate = (ID)=>{
-      let newcourselist = courselist.map((course)=>{
-        if(course.id === ID)
-          return {...course , isComplete:!course.isComplete}
-        else
-          return course
-      })
-      setCourselist(newcourselist); 
-    }
+  const Iscomplate = (ID) => {
+    const newCourselist = courselist.map((course) => {
+      if (course.id === ID) {
+        return { ...course, isComplete: !course.isComplete };
+      }
+      return course;
+    });
+    setCourselist(newCourselist);
+  };
 
   return (
     <div className="App">
-      <div>
+      <h1>📚 مدیریت دوره‌ها</h1>
+
+      <div className="input-group">
         <input
           type="text"
-          placeholder="type..."
+          placeholder="نام دوره..."
           value={newcourse}
           onChange={handleInput}
         />
-        <button onClick={addCourse}>Add Course</button>
+        <button onClick={addCourse}>➕ افزودن</button>
       </div>
 
-      <div>
-        {courselist.map((course)=>{
-         return (
+      {courselist.length === 0 ? (
+        <div className="empty">هیچ دوره‌ای ثبت نشده است</div>
+      ) : (
+        courselist.map((course) => (
           <Course
-           key={course.id} 
-             course={course} 
-               deleteCourse={deleteCourse}
-                  Iscomplate={Iscomplate}
-          
-          ></Course>
-         )
-        })}
-      </div>
-      
+            key={course.id}
+            course={course}
+            deleteCourse={deleteCourse}
+            Iscomplate={Iscomplate}
+          />
+        ))
+      )}
     </div>
   );
 }
