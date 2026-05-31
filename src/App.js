@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { Course } from "./component/course";
 
 function App() {
   const [courselist, setCourselist] = useState([]);
@@ -28,6 +29,7 @@ function App() {
     setCourselist(courselist.filter((course) => course.id !== courseId));
     };
 
+
   return (
     <div className="App">
       <div>
@@ -40,12 +42,14 @@ function App() {
         <button onClick={addCourse}>Add Course</button>
       </div>
 
-      {courselist.map((course) => (
-        <div key={course.id}>
-          <h1>{course.courseName}</h1>
-          <button onClick={() => deleteCourse(course.id)}>❌ Delete</button>
-        </div>
-      ))}
+      <dvi>
+        {courselist.map((course)=>{
+         return (
+          <Course key={course.id} course={course} deleteCourse={deleteCourse}></Course>
+         )
+        })}
+      </dvi>
+      
     </div>
   );
 }
