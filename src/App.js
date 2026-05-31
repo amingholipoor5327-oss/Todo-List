@@ -29,6 +29,15 @@ function App() {
     setCourselist(courselist.filter((course) => course.id !== courseId));
     };
 
+    const Iscomplate = (ID)=>{
+      let newcourselist = courselist.map((course)=>{
+        if(course.id === ID)
+          return {...course , isComplete:!course.isComplete}
+        else
+          return course
+      })
+      setCourselist(newcourselist); 
+    }
 
   return (
     <div className="App">
@@ -42,13 +51,19 @@ function App() {
         <button onClick={addCourse}>Add Course</button>
       </div>
 
-      <dvi>
+      <div>
         {courselist.map((course)=>{
          return (
-          <Course key={course.id} course={course} deleteCourse={deleteCourse}></Course>
+          <Course
+           key={course.id} 
+             course={course} 
+               deleteCourse={deleteCourse}
+                  Iscomplate={Iscomplate}
+          
+          ></Course>
          )
         })}
-      </dvi>
+      </div>
       
     </div>
   );
