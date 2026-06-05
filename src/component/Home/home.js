@@ -3,7 +3,7 @@ import { useEffect, useState , useContext } from "react";
 import {Course} from "../Course/course"
  import  {CourseContext} from  "../../Context/usecontext.js"
 import { Link } from "react-router-dom";
-export const Home = ()=>{
+ export const Home = ()=>{
      const {courselist , setCourselist} = useContext(CourseContext)
 
 
@@ -20,7 +20,10 @@ useEffect(() => {
     setNewcourse(e.target.value);
   };
 
-
+  const deleteAll = ()=>{
+    localStorage.removeItem("course");
+    setCourselist([])
+  }
 
   const addCourse = () => {
     if (newcourse.trim() === "") {
@@ -84,8 +87,8 @@ useEffect(() => {
         ))
       )}
 
-       <button className="complate">Complate</button> 
-       <button className="Delete">Delete</button> 
+       <Link to={"/complete"}><button className="complate">Complate</button></Link> 
+       <button className="Delete" onClick={deleteAll}>Delete all</button>  
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./component/Home/home";
-import {Delete} from "./component/Delete/delete"
-import { Complete } from "./component/Complete/complete";
+ import { Complete } from "./component/Complete/complete";
 
 function App() {
   return (
@@ -9,7 +8,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/complete" element={<Complete />} />
-        <Route path="/delete" element={<Delete />} />
       </Routes>
     </BrowserRouter>
   );
