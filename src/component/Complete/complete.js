@@ -1,5 +1,8 @@
+import "./complete.css";
 import { useContext } from "react";
 import { CourseContext } from "../../Context/usecontext";
+import { Link } from "react-router-dom";
+
 export const Complete = () => {
   const { courselist } = useContext(CourseContext);
 
@@ -8,18 +11,30 @@ export const Complete = () => {
   );
 
   return (
-    <div>
-      <h1>✅ Completed Courses</h1>
+    <div className="complete-page">
+      <h1 className="complete-title">
+        ✅ Completed Courses
+      </h1>
 
       {completedCourses.length === 0 ? (
-        <p>هیچ دوره‌ای تکمیل نشده است</p>
+        <p className="empty-message">
+          هیچ دوره‌ای تکمیل نشده است
+        </p>
       ) : (
-        completedCourses.map((course) => (
-          <div key={course.id}>
-            <h3>{course.courseName}</h3>
-          </div>
-        ))
+        <div className="completed-list">
+          {completedCourses.map((course) => (
+            <div
+              key={course.id}
+              className="completed-card"
+            >
+              <h3 className="completed-name">
+                {course.courseName}
+              </h3>
+            </div>
+          ))}
+        </div>
       )}
+      <Link to={"/"}><button className="Home">go home</button></Link>
     </div>
   );
 };
