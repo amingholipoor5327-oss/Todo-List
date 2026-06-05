@@ -1,13 +1,12 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState , useContext } from "react";
 import { Course } from "./component/Course/course";
+import { Delete } from "./component/Delete/delete";
+import { Complete } from "./component/Complete/complete";
+ import { CourseContext } from "./Context/usecontext";
 function App() {
+ const {courselist , setCourselist} = useContext(CourseContext)
 
-const [courselist, setCourselist] = useState(() => {
-  
-  const saved = localStorage.getItem("course");
-  return saved ? JSON.parse(saved) : [];
-});
 
   const [newcourse, setNewcourse] = useState("");
 
@@ -31,7 +30,7 @@ useEffect(() => {
     }
 
     const course = {
-      id: courselist.length === 0 ? 1 : courselist[courselist.length - 1].id + 1,
+      id: Date.now(),
       courseName: newcourse,
       isComplete: false
     };
@@ -86,8 +85,8 @@ useEffect(() => {
         ))
       )}
 
-      <button className="complate">Complate</button>
-      <button className="Delete">Delete</button>
+      <Complete className="complate">Complate</Complete>
+      <Delete className="Delete">Delete</Delete>
     </div>
   );
 }
