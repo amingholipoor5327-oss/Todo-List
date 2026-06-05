@@ -1,14 +1,28 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Course } from "./component/course";
-
 function App() {
-  const [courselist, setCourselist] = useState([]);
+
+const [courselist, setCourselist] = useState(() => {
+  
+  const saved = localStorage.getItem("course");
+  return saved ? JSON.parse(saved) : [];
+});
+
   const [newcourse, setNewcourse] = useState("");
+
+useEffect(() => {
+  console.log("saving:", courselist);
+  localStorage.setItem("course", JSON.stringify(courselist));
+}, [courselist]);
+  
+
 
   const handleInput = (e) => {
     setNewcourse(e.target.value);
   };
+
+
 
   const addCourse = () => {
     if (newcourse.trim() === "") {
@@ -25,9 +39,13 @@ function App() {
     setNewcourse("");
   };
 
+
+
   const deleteCourse = (courseId) => {
     setCourselist(courselist.filter((course) => course.id !== courseId));
   };
+
+
 
   const Iscomplate = (ID) => {
     const newCourselist = courselist.map((course) => {
@@ -38,6 +56,8 @@ function App() {
     });
     setCourselist(newCourselist);
   };
+
+
 
   return (
     <div className="App">
