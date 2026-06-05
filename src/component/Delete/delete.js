@@ -1,7 +1,7 @@
 import "./delete.css"
 export const Delete = ()=>{
     return(<div>
-                <button className="Delete">Delete</button>
+              <h2>hi</h2>
 
     </div>)
 }
