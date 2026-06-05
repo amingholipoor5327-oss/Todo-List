@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { Course } from "./component/course";
+import { Course } from "./component/Course/course";
 function App() {
 
 const [courselist, setCourselist] = useState(() => {
@@ -85,6 +85,9 @@ useEffect(() => {
           />
         ))
       )}
+
+      <button className="complate">Complate</button>
+      <button className="Delete">Delete</button>
     </div>
   );
 }
