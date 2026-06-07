@@ -3,6 +3,7 @@ import { useEffect, useState , useContext } from "react";
 import {Course} from "../Course/course"
  import  {CourseContext} from  "../../Context/usecontext.js"
 import { Link } from "react-router-dom";
+import { Sidebar } from "../sidebar/sidebar.js";
  export const Home = ()=>{
      const {courselist , setCourselist} = useContext(CourseContext)
 
@@ -61,7 +62,9 @@ useEffect(() => {
 
 
   return (
+    
     <div className="App">
+      <Sidebar></Sidebar>
       <h1>📚 مدیریت دوره‌ها</h1>
 
       <div className="input-group">

@@ -2,6 +2,7 @@ import "./complete.css";
 import { useContext } from "react";
 import { CourseContext } from "../../Context/usecontext";
 import { Link } from "react-router-dom";
+import { Sidebar } from "../sidebar/sidebar";
 
 export const Complete = () => {
   const { courselist } = useContext(CourseContext);
@@ -13,6 +14,7 @@ export const Complete = () => {
   return (
     <div className="complete-page">
       <h1 className="complete-title">
+        <Sidebar></Sidebar>
         ✅ Completed Courses
       </h1>
 
